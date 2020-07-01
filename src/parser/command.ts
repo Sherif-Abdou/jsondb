@@ -3,11 +3,12 @@ import Column from "../json/column";
 import Table from "../json/table";
 import Item from "../json/item";
 
-export type CommandResult = Column[] | Table[] | Item[] | "OK";
+export type CommandResult = Table[] | Column[] | Item[] | "OK";
 
 abstract class Command {
     manager: JSONManager;
     private tokens: string[];
+    readonly abstract mutates_state: boolean;
     constructor(manager: JSONManager) {
         this.manager = manager;
         this.tokens = [];

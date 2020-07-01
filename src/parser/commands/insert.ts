@@ -8,6 +8,8 @@ class InsertCommand extends Command {
     table_name: string;
     column_search: ColumnSearch;
     column_values: ItemType[];
+    mutates_state: boolean = true;
+
     private raw_values_to_values(raw: string[]): ItemType[] {
         return raw.map(value => {
             let parsed_number = parseFloat(value);

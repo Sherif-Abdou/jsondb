@@ -4,6 +4,7 @@ import { ColumnSearch, parse_columns } from "../command_utils";
 
 
 class SelectCommand extends Command {
+    mutates_state: boolean = false;
     column_names: ColumnSearch;
     table_name: string;
 
