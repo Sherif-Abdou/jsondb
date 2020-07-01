@@ -10,7 +10,7 @@ test("Table initalizes successfully", () => {
 
 test("Table can stringify", () => {
     let table = new Table();
-    console.log(table.toJSONString());
+    let result = table.toJSONString();
 });
 
 test("Table can stringify with columns and items", () => {

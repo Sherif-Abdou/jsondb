@@ -5,8 +5,8 @@ export default class Column {
     title: string;
     id: string;
     items: Item[];
-    constructor() {
-        this.title = "";
+    constructor(title: string = "") {
+        this.title = title;
         this.id = uuidv4();
         this.items = [];
     }

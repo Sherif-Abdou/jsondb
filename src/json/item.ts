@@ -11,4 +11,4 @@ export default class Item {
     }
 }
 
-export type ItemType = number | string | null | object | ItemType[];
+export type ItemType = number | string | null; 
