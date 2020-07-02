@@ -17,7 +17,7 @@ export default class JSONManager {
                     return;
                 }
                 const str_data = data.toString();
-                this.tables = JSON.parse(str_data);
+                this.tables = JSON.parse(str_data).map(v => Object.assign(new Table, v));
                 resolve();
             });
         });

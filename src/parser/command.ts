@@ -3,7 +3,7 @@ import Column from "../json/column";
 import Table from "../json/table";
 import Item from "../json/item";
 
-export type CommandResult = Table[] | Column[] | Item[] | "OK";
+export type CommandResult = Table[] | Item[][] | Item[] | "OK";
 
 abstract class Command {
     manager: JSONManager;

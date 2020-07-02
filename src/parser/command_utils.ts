@@ -1,5 +1,7 @@
 // Functions used in multiple commands
 
+import { ItemType } from "../json/item";
+
 export type ColumnSearch = string[] | "All";
 export function are_equal(arr1: string[], arr2: string[]): boolean {
     return (
@@ -17,4 +19,15 @@ export function parse_columns(column_tokens: string[]): ColumnSearch {
         throw new Error("Missing commas");
     }
     return column_tokens.filter((t) => t !== ",");
+}
+
+export function value_to_itemtype(value: string): ItemType {
+    const parsed_number: number = parseFloat(value);
+    if (!isNaN(parsed_number)) {
+        return parsed_number;
+    }
+    if (value.startsWith("\"") && value.endsWith("\"")) {
+        return value.substring(1, value.length - 1);
+    }
+    return value;
 }

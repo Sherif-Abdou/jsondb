@@ -1,5 +1,5 @@
 import Command, { CommandResult } from "../command";
-import { parse_columns, ColumnSearch } from "../command_utils";
+import { parse_columns, ColumnSearch, value_to_itemtype } from "../command_utils";
 import { v4 as uuidv4 } from "uuid";
 import Item, { ItemType } from "../../json/item";
 import Column from "../../json/column";
@@ -14,11 +14,7 @@ class InsertCommand extends Command {
 
     private raw_values_to_values(raw: string[]): ItemType[] {
         return raw.map((value) => {
-            const parsed_number = parseFloat(value);
-            if (!isNaN(parsed_number)) {
-                return parsed_number;
-            }
-            return value;
+            return value_to_itemtype(value);
         });
     }
 
