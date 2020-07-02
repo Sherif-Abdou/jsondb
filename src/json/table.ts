@@ -1,9 +1,10 @@
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
+import Column from "./column";
 
 export default class Table {
     id: string;
     name: string;
-    columns: any[];
+    columns: Column[];
     rows: string[];
     constructor() {
         this.id = uuidv4();
@@ -12,7 +13,7 @@ export default class Table {
         this.rows = [];
     }
 
-    toJSONString() {
+    toJSONString(): string {
         return JSON.stringify(this);
     }
 }

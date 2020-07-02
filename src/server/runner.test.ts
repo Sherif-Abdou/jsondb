@@ -31,9 +31,21 @@ function create_manager(): JSONManager {
 test("Runner can exist", async () => {
     let manager = create_manager();
     let runner = new Runner(manager);
+    console.log(JSON.stringify(manager.tables));
     let tokens = ["select", "*", "from", "students", ";"];
-    let command = new SelectCommand(manager);
+    let command = new SelectCommand();
     command.parse_tokens(tokens);
 
-    let result = await runner.runCommand(command);
+    let result = await runner.runCommand(command) as Column[];
+    expect(result[0].title).toEqual("a");
+    expect(result[1].title).toEqual("b");
+});
+
+test("Runner can run from string", async () => {
+    let manager = create_manager();
+    let runner = new Runner(manager);
+    let tokens = "select * from students;";
+    let result = await runner.run_from_string(tokens) as Column[];
+    expect(result[0].title).toEqual("a");
+    expect(result[1].title).toEqual("b");
 });

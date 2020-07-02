@@ -9,23 +9,23 @@ export default class JSONManager {
         this.tables = [];
     }
 
-    load(): Promise<any> {
-        return new Promise<any>((resolve, reject) => {
+    load(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
             readFile(this.file_path, (err, data) => {
                 if (err) {
                     reject(err);
                     return;
                 }
-                let str_data = data.toString();
+                const str_data = data.toString();
                 this.tables = JSON.parse(str_data);
                 resolve();
             });
         });
     }
 
-    save(): Promise<any> {
-        return new Promise<any>((resolve, reject) => {
-            writeFile(this.file_path, JSON.stringify(this.tables), err => {
+    save(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            writeFile(this.file_path, JSON.stringify(this.tables), (err) => {
                 if (err) {
                     reject(err);
                     return;

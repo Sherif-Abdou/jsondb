@@ -7,7 +7,7 @@ import Item from "../../json/item";
 
 test("Insert command can parse with all columns", () => {
     let tokens = tokenize("insert into table1 values (1, 2);");  
-    let insert_command = new InsertCommand(null);
+    let insert_command = new InsertCommand();
     insert_command.parse_tokens(tokens);
     expect(insert_command.column_values).toEqual([1, 2]);
     expect(insert_command.column_search).toEqual("All");
@@ -15,7 +15,7 @@ test("Insert command can parse with all columns", () => {
 
 test("Insert command can parse with some columns", () => {
     let tokens = tokenize("insert into table1 (a, b) values (1, 2);");  
-    let insert_command = new InsertCommand(null);
+    let insert_command = new InsertCommand();
     insert_command.parse_tokens(tokens);
     expect(insert_command.column_values).toEqual([1, 2]);
     expect(insert_command.column_search).toEqual(["a", "b"]);
@@ -45,19 +45,19 @@ function create_manager(): JSONManager {
 test("Insert command can run", () => {
     let tokens = tokenize("insert into students (a, b) values (1, 2);");  
     let manager = create_manager();
-    let insert_command = new InsertCommand(manager);
+    let insert_command = new InsertCommand();
     insert_command.parse_tokens(tokens);
 
-    let result = insert_command.run() as Table[];
+    let result = insert_command.run(manager) as Table[];
     expect(result[0].columns[1].items[0].value).toEqual(2);
 });
 
 test("Insert command can run with all columns", () => {
     let tokens = tokenize("insert into students values (1, 2);");  
     let manager = create_manager();
-    let insert_command = new InsertCommand(manager);
+    let insert_command = new InsertCommand();
     insert_command.parse_tokens(tokens);
 
-    let result = insert_command.run() as Table[];
+    let result = insert_command.run(manager) as Table[];
     expect(result[0].columns[1].items[0].value).toEqual(2);
 });

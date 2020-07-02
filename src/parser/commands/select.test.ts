@@ -6,7 +6,7 @@ import Item from "../../json/item";
 
 test("Select Command can parse tokens with one column", () => {
     let tokens = ["select", "names", "from", "customers", ";"];
-    let command = new SelectCommand(null);
+    let command = new SelectCommand();
     command.parse_tokens(tokens);
     expect(command.column_names).toEqual(["names"]);
     expect(command.table_name).toEqual("customers");
@@ -14,7 +14,7 @@ test("Select Command can parse tokens with one column", () => {
 
 test("Select Command can parse tokens with multiple columns", () => {
     let tokens = ["select", "names", ",", "grades", "from", "students", ";"];
-    let command = new SelectCommand(null);
+    let command = new SelectCommand();
     command.parse_tokens(tokens);
     expect(command.column_names).toEqual(["names", "grades"]);
     expect(command.table_name).toEqual("students");
@@ -22,7 +22,7 @@ test("Select Command can parse tokens with multiple columns", () => {
 
 test("Select Command can parse tokens with a wildcard", () => {
     let tokens = ["select", "*", "from", "students", ";"];
-    let command = new SelectCommand(null);
+    let command = new SelectCommand();
     command.parse_tokens(tokens);
     expect(command.column_names).toEqual("All");
     expect(command.table_name).toEqual("students");
@@ -52,10 +52,10 @@ test("Select command can run", () => {
     let manager = create_manager();
 
     let tokens = ["select", "a", "from", "students", ";"];
-    let command = new SelectCommand(manager);
+    let command = new SelectCommand();
     command.parse_tokens(tokens);
 
-    let result = command.run() as Column[];
+    let result = command.run(manager) as Column[];
     expect(result[0].title).toEqual("a");
 });
 
@@ -63,9 +63,9 @@ test("Select command can run", () => {
     let manager = create_manager();
 
     let tokens = ["select", "*", "from", "students", ";"];
-    let command = new SelectCommand(manager);
+    let command = new SelectCommand();
     command.parse_tokens(tokens);
 
-    let result = command.run() as Column[];
+    let result = command.run(manager) as Column[];
     expect(result[0].title).toEqual("a");
 });
