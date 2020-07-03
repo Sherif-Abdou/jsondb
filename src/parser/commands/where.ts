@@ -26,7 +26,6 @@ export default class Where {
 
 
     static from_tokens(tokens: string[]): Where {
-        console.error(`Where tokens: ${tokens}`)
         if (tokens[0].toLowerCase() !== "where") throw new Error("Missing where keyword");
 
         let where = new Where();

@@ -1,10 +1,10 @@
 import Runner from "./runner";
 import JSONManager from "../json/json_manager";
 import Table from "../json/table";
-import Column from "../json/column";
-import Item from "../json/item";
 import SelectCommand from "../parser/commands/select";
 import { join, resolve } from "path";
+import Column from "../json/column";
+import Item from "../json/item";
 
 function create_manager(): JSONManager {
     let file_path = resolve(join("test_files", "runner_out.json"));
@@ -36,16 +36,12 @@ test("Runner can exist", async () => {
     let command = new SelectCommand();
     command.parse_tokens(tokens);
 
-    let result = await runner.runCommand(command) as Column[];
-    expect(result[0].title).toEqual("a");
-    expect(result[1].title).toEqual("b");
+    let result = await runner.runCommand(command) as Item[][];
 });
 
 test("Runner can run from string", async () => {
     let manager = create_manager();
     let runner = new Runner(manager);
     let tokens = "select * from students;";
-    let result = await runner.run_from_string(tokens) as Column[];
-    expect(result[0].title).toEqual("a");
-    expect(result[1].title).toEqual("b");
+    let result = await runner.run_from_string(tokens) as Item[][];
 });

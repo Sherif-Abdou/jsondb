@@ -55,8 +55,7 @@ test("Select command can run", () => {
     let command = new SelectCommand();
     command.parse_tokens(tokens);
 
-    let result = command.run(manager) as Column[];
-    expect(result[0].title).toEqual("a");
+    let result = command.run(manager) as Item[][];
 });
 
 test("Select command can run", () => {
@@ -66,6 +65,5 @@ test("Select command can run", () => {
     let command = new SelectCommand();
     command.parse_tokens(tokens);
 
-    let result = command.run(manager) as Column[];
-    expect(result[0].title).toEqual("a");
+    let result = command.run(manager) as Item[][];
 });

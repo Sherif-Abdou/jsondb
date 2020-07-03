@@ -4,10 +4,12 @@ import Command, { CommandResult } from "../parser/command";
 import tokenize from "../parser/tokenizer";
 import SelectCommand from "../parser/commands/select";
 import InsertCommand from "../parser/commands/insert";
+import UpdateCommand from "../parser/commands/update";
 
 const token_to_command = {
     insert: InsertCommand,
-    select: SelectCommand
+    select: SelectCommand,
+    update: UpdateCommand
 }
 
 export default class Runner {
