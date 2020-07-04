@@ -5,11 +5,13 @@ import tokenize from "../parser/tokenizer";
 import SelectCommand from "../parser/commands/select";
 import InsertCommand from "../parser/commands/insert";
 import UpdateCommand from "../parser/commands/update";
+import DeleteCommand from "../parser/commands/delete";
 
 const token_to_command = {
     insert: InsertCommand,
     select: SelectCommand,
-    update: UpdateCommand
+    update: UpdateCommand,
+    delete: DeleteCommand
 }
 
 export default class Runner {
@@ -54,7 +56,7 @@ export default class Runner {
     async run_from_string(str: string): Promise<CommandResult> {
         const tokens = tokenize(str);
         if (tokens === undefined || tokens.length === 0) throw new Error("Couldn't tokenize string");
-        let value: Command = new token_to_command[tokens[0]]();
+        let value: Command = new token_to_command[tokens[0].toLowerCase()]();
         value.parse_tokens(tokens);
         return this.runCommand(value);
     }

@@ -1,7 +1,13 @@
 {
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "src/**/*.test.ts"],
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/**/*.test.ts"
+    ],
     "compilerOptions": {
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "sourceMap": true
     }
 }
