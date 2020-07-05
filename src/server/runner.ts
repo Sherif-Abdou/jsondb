@@ -6,12 +6,14 @@ import SelectCommand from "../parser/commands/select";
 import InsertCommand from "../parser/commands/insert";
 import UpdateCommand from "../parser/commands/update";
 import DeleteCommand from "../parser/commands/delete";
+import CreateTableCommand from "../parser/commands/create_table";
 
 const token_to_command = {
     insert: InsertCommand,
     select: SelectCommand,
     update: UpdateCommand,
-    delete: DeleteCommand
+    delete: DeleteCommand,
+    create: CreateTableCommand
 }
 
 export default class Runner {
@@ -56,7 +58,10 @@ export default class Runner {
     async run_from_string(str: string): Promise<CommandResult> {
         const tokens = tokenize(str);
         if (tokens === undefined || tokens.length === 0) throw new Error("Couldn't tokenize string");
-        let value: Command = new token_to_command[tokens[0].toLowerCase()]();
+        const command_constructor = tokens[0].toLowerCase();
+        if (command_constructor === undefined) throw new Error("Unrecognized command");
+
+        let value: Command = new token_to_command[command_constructor]();
         value.parse_tokens(tokens);
         return this.runCommand(value);
     }

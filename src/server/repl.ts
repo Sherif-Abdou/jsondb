@@ -11,10 +11,16 @@ async function run(tokens: string, runner: Runner): Promise<string> {
     return JSON.stringify(raw_result);
 }
 
-function main(file_path: string) {
+async function main(file_path: string) {
     const manager = new JSONManager(file_path);
     const runner = new Runner(manager);
-    runner.load();
+
+    try {
+        await runner.load();
+    } catch (e) {
+        console.error(e);
+        process.exit(0);
+    }
 
     let rl = readline.createInterface({
         input: process.stdin,
@@ -48,4 +54,5 @@ function main(file_path: string) {
     });
 }
 
-main("./test_files/repl_test.json");
+let file_path = process.argv[2];
+main(file_path);
