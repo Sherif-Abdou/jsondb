@@ -30,14 +30,14 @@ class InsertCommand extends Command {
         if (table_name === undefined) throw new Error("No table name given");
 
         let column_search: ColumnSearch = undefined;
-        let value_token_index = -1;
+        let value_token_index = -1; // The token index of "values"
         if (tokens[3] === "values") {
             column_search = "All";
             value_token_index = 3;
         } else if (tokens[3] === "(") {
-            const end_paranth = tokens.findIndex((v, i) => v === ")" && i > 3);
-            column_search = parse_columns(tokens.slice(4, end_paranth));
-            value_token_index = end_paranth + 1;
+            const end_parenth_token = tokens.findIndex((v, i) => v === ")" && i > 3);
+            column_search = parse_columns(tokens.slice(4, end_parenth_token));
+            value_token_index = end_parenth_token + 1;
             if (tokens[value_token_index] !== "values")
                 throw new Error("Missing value keyword");
         } else {

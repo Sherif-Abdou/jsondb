@@ -1,4 +1,4 @@
-import Column from "./column";
+import Column from "../../src/json/column";
 
 test("Column initializes", () => {
     const column = new Column();

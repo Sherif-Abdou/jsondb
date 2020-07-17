@@ -1,9 +1,9 @@
-import JSONManager from "../../json/json_manager";
-import Table from "../../json/table";
-import Column from "../../json/column";
-import Item from "../../json/item";
-import UpdateCommand from "./update";
-import tokenize from "../tokenizer";
+import JSONManager from "../../../src/json/json_manager";
+import Table from "../../../src/json/table";
+import Column from "../../../src/json/column";
+import Item from "../../../src/json/item";
+import UpdateCommand from "../../../src/parser/commands/update";
+import tokenize from "../../../src/parser/tokenizer";
 
 function create_manager(): JSONManager {
     let manager = new JSONManager("");

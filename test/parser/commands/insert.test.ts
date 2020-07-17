@@ -1,9 +1,9 @@
-import InsertCommand from "./insert";
-import tokenize from "../tokenizer";
-import JSONManager from "../../json/json_manager";
-import Table from "../../json/table";
-import Column from "../../json/column";
-import Item from "../../json/item";
+import InsertCommand from "../../../src/parser/commands/insert";
+import tokenize from "../../../src/parser/tokenizer";
+import JSONManager from "../../../src/json/json_manager";
+import Table from "../../../src/json/table";
+import Column from "../../../src/json/column";
+import Item from "../../../src/json/item";
 
 test("Insert command can parse with all columns", () => {
     let tokens = tokenize("insert into table1 values (1, 2);");  

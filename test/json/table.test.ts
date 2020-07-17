@@ -1,6 +1,6 @@
-import Table from "./table";
-import Item from "./item";
-import Column from "./column";
+import Table from "../../src/json/table";
+import Item from "../../src/json/item";
+import Column from "../../src/json/column";
 
 test("Table initalizes successfully", () => {
     const table = new Table();

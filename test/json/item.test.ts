@@ -1,4 +1,4 @@
-import Item, {ItemType} from "./item";
+import Item, {ItemType} from "../../src/json/item";
 import {v4 as uuidv4} from "uuid";
 
 test("Item can initalize", () => {

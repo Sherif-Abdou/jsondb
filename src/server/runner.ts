@@ -7,6 +7,7 @@ import InsertCommand from "../parser/commands/insert";
 import UpdateCommand from "../parser/commands/update";
 import DeleteCommand from "../parser/commands/delete";
 import CreateTableCommand from "../parser/commands/create_table";
+import DefaultSaveLoader from "./DefaultSaveLoader";
 
 const token_to_command = {
     insert: InsertCommand,
@@ -18,8 +19,12 @@ const token_to_command = {
 
 export default class Runner {
     private manager: JSONManager;
+
     constructor(manager: JSONManager, load: boolean = false) {
         this.manager = manager;
+        if (this.manager.save_loader === null) {
+            this.manager.save_loader = new DefaultSaveLoader();
+        }
     }
 
     getTables(): Table[] {

@@ -1,8 +1,8 @@
-import SelectCommand from "./select";
-import JSONManager from "../../json/json_manager";
-import Table from "../../json/table";
-import Column from "../../json/column";
-import Item from "../../json/item";
+import SelectCommand from "../../../src/parser/commands/select";
+import JSONManager from "../../../src/json/json_manager";
+import Table from "../../../src/json/table";
+import Column from "../../../src/json/column";
+import Item from "../../../src/json/item";
 
 test("Select Command can parse tokens with one column", () => {
     let tokens = ["select", "names", "from", "customers", ";"];

@@ -1,4 +1,4 @@
-import tokenize from "./tokenizer";
+import tokenize from "../../src/parser/tokenizer";
 
 test("Tokenizer parses a select command", () => {
     const sql_command = "select * from table1;";

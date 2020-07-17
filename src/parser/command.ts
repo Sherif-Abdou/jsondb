@@ -9,8 +9,11 @@ abstract class Command {
     manager: JSONManager;
     private tokens: string[];
     abstract readonly mutates_state: boolean;
-    constructor() {
-        this.tokens = [];
+    constructor(tokens: string[] = []) {
+        this.tokens = tokens;
+        if (tokens.length !== 0) {
+            this.parse_tokens(this.tokens);
+        }
     }
 
     abstract parse_tokens(tokens: string[]): void;
